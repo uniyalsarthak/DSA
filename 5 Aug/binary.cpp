@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include<iostream>
 using namespace std;
 //binary search
 int elementsearch(int a[],int key)
