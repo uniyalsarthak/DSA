@@ -1,10 +1,19 @@
 #include<bits/stdc++.h>
 using namespace std;
 //binary search
-int elementsearch(int a[],int key)
+int elementsearch(int a[],int size,int key)
 {
+    cout<<"enter the size of array:";
+    cin>>size;
+    cout<<"enter a sorted array:";
+     for(int i=0;i<size;i++)
+    {
+        cin>>a[i];
+    }
+    cout<<"enter the number to be searched=";
+    cin>>key;
     int low=0;
-    int high=4;
+    int high=size-1;
     while(low<=high)
     {
         int mid=low +(high-low)/2;
@@ -22,8 +31,9 @@ int elementsearch(int a[],int key)
 }
 int main()
 {
-    int a[5]={2,5,7,8,10};
-    int found=elementsearch(a,3);
+    int x;
+    int a[10],size;
+    int found=elementsearch(a,size,x);
     if(found==1)
     cout<<"key found";
     else
