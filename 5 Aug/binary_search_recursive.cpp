@@ -3,9 +3,7 @@ using namespace std;
 int a[10],size,key;
 int binarysearch(int low,int high)
 {
-    if(low>high)
-        return 0;
-    else
+    while(low<=high)
     {
         int mid=low +(high-low)/2;
         if(a[mid]==key)
@@ -13,9 +11,9 @@ int binarysearch(int low,int high)
         else
         {
             if(key>a[mid])
-            return binarysearch(low+1,high);
+            return binarysearch(mid+1,high);
             else
-            return binarysearch(low,high-1);
+            return binarysearch(low,mid-1);
         }
     }
         
