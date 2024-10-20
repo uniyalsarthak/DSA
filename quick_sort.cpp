@@ -1,19 +1,36 @@
 #include<bits/stdc++.h>
 using namespace std;
-
-void insertionSort(int* a,int n)
+int partition(int* a,int s,int e)
 {
-    for(int i=1;i<n;i++)                   //check that previous elements are smaller than current element or not
+    int count=0;
+    int pivot=a[s];
+    for(int i=s+1;i<=e;i++)
     {
-        int temp=a[i];
-        int j=i-1;
-        while(j>=0&& a[j]>temp)          
-        {
-            a[j+1]=a[j];
-            j--;
-        }
-        a[j+1]=temp;
+        if(a[i]<pivot)
+        count++;
     }
+    int pivotIndex=s+count;
+    swap(a[s],a[pivotIndex]);
+    int i=s,j=e;
+    while(i<pivotIndex && j>pivotIndex)
+    {
+        while(a[i]<pivot)
+        i++;
+        while(a[j]>pivot)
+        j--;
+        if(i<pivotIndex && j>pivotIndex)
+        swap(a[i++],a[j--]);
+    }
+    return pivotIndex;
+}
+
+void quickSort(int* a,int s,int e)
+{
+    if(s>=e)
+    return;
+    int p=partition(a,s,e); 
+    quickSort(a,s,p-1);
+    quickSort(a,p+1,e);
 }
 
 void print(int* arr,int n)
@@ -39,16 +56,16 @@ int main()
     ofstream outfile("sort_time.csv");
     outfile<<"Array Size,Time (microseconds)\n";
     int arr[60000];
-    int size=50;
-        while(size<=40000)
+    int size=1000;
+        while(size<=20000)
     {
         initialise(arr,size);
         clock_t start,end;
         start=clock();
         //cout<<"start:"<<start<<endl;
-        for(int j=0;j<=100;j++)
+        for(int j=0;j<=10;j++)
         {
-            insertionSort(arr,size);
+            quickSort(arr,0,size-1);
         }
         end=clock();
         //cout<<"end:"<<end<<endl;
